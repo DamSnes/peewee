@@ -1,0 +1,25 @@
+
+
+{% extends "layout.html" %}
+{% block body %}
+
+<br>
+
+<form action="/posts/{{ expense.id }}/update" method="post" align = "center" value = "{{ expense.id }}">
+    <div class="row">
+
+        <div class="col-lg-10 col-sm-6">
+            <input type="text" name="name" id="name" value=""/>
+            {{ form.name( class='form-control input-default', placeholder='Input Default') }}
+        </div>
+
+        <div class="col-lg-2 col-sm-6">
+            <button type="submit" class="btn mb-1 btn-outline-success">Send</button>
+        </div>
+
+    </div>
+</form>
+
+{% endblock %}
+
+

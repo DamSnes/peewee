@@ -1,0 +1,10 @@
+# Игнорируем расширения
+*.pyc
+
+# Игнорируем папки:
+/venv
+/pycache
+
+# Игнорируем конфиги
+config/base.yml
+config/database.yml

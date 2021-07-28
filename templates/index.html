@@ -1,0 +1,99 @@
+
+
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-4 col-sm-6">
+            <div class="card gradient-1">
+                <div class="card-body">
+                    <h3 class="card-title text-white">Tasks</h3>
+                    <div class="d-inline-block">
+                        <h2 class="text-white"> {{i[0]}} </h2>
+                    </div>
+                    <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="card gradient-2">
+                <div class="card-body">
+                    <h3 class="card-title text-white">Counter</h3>
+                    <div class="d-inline-block">
+
+                        <h2 class="text-white">  </h2>
+
+                    </div>
+                    <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+            <div class="card gradient-3">
+                <div class="card-body">
+                    <h3 class="card-title text-white">New Customers</h3>
+                    <div class="d-inline-block">
+                        <h2 class="text-white">4565</h2>
+                    </div>
+                    <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form action="/" method="post">
+        {{ form.csrf_token }}
+        <div class="row">
+
+            <div class="col-lg-10 col-sm-6">
+                {{ form.name( class='form-control input-default', placeholder='Input Default') }}
+            </div>
+
+            <div class="col-lg-2 col-sm-6">
+                <button type="submit" class="btn mb-1 btn-outline-success">Send</button>
+            </div>
+
+        </div>
+    </form>
+    <br>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">List</h4>
+                <div class="table-responsive">
+
+                    <table class="table table-bordered verticle-middle">
+                        <thead>
+                        <tr>
+                            {% for header in headings %}
+                            <th class="table__cell">{{ header }}</th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for el in bring %}
+                        <tr>
+                            <td>{{el.id}}</td>
+
+                            <td>{{el.name}}</td>
+
+                            <td> {{el.created_at.strftime("%d.%m.%Y %H:%M")}} </td>
+
+                            </td>
+                            <td><span><a href="/posts/{{ el.id }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="/delete/{{ el.id }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
