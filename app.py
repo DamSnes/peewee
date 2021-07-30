@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, session, g
+from flask import Flask, render_template, request, url_for, redirect, session, g, make_response
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user
 from models import Expense, User
 from forms import Validation
@@ -18,15 +18,6 @@ login_manager.init_app(app)
 
 headings = ("Id", "Name", "Date", "Edit")
 data = ()
-
-
-#@app.route('/', methods=['POST'])
-#def visits():
-#    if 'visits' in session:
-#        session['visits'] = session.get('visits') + 1
-#    else:
-#        session['visits'] = 1
-#    return render_template('index.html')
 
 
 @app.route('/', methods=['POST'])
@@ -50,11 +41,17 @@ def index():
     bring = Expense.select().order_by(Expense.id.asc())
     form = Validation()
 
+    for number in enumerate(bring, 1):
 
-    for i in enumerate(bring, 1):
-        print(i)
+        print(number)
 
-    return render_template('index.html', i=i, filter=filter, bring=bring, form=form, headings=headings, data=data)
+    if 'visits' in session:
+        session['visits'] = session.get('visits') + 1
+    else:
+        session['visits'] = 1
+    print(session)
+
+    return render_template('index.html', number=number, filter=filter, bring=bring, form=form, headings=headings, data=data)
 
 
 @app.route('/delete', methods=['POST', 'GET', 'DELETE'])
@@ -109,9 +106,27 @@ def post_update(id):
 #     return render_template('login.html')
 
 
-@app.route('/register', methods=['POST', 'GET'])
-def register():
-    return render_template('register.html')
+# @app.route('/register', methods=['POST', 'GET'])
+# def register():
+#     return render_template('register.html')
+
+
+# @app.route('/login', methods=['POST', 'GET'])
+# def create_cookie():
+#     log = ""
+#     if request.cookies.get('logged'):
+#         log = request.cookies.get('logged')
+#
+#     res = make_response(f"<h1>Авторизация</h1><p>logged: {log}")
+#     res.set_cookie("logged", "yes")
+#     return res
+#
+#
+# @app.route('/logout', methods=['POST', 'GET'])
+# def delete_cookie():
+#     res = make_response(f"<h1>Вы не авторизованны !</h1>")
+#     res.set_cookie("logged", "", 0)
+#     return res
 
 
 @login_manager.user_loader
@@ -126,7 +141,8 @@ def load_user(id):
 def sessions_new():
     if current_user.is_authenticated:
         return redirect('/')
-    return render_template('/login.html')
+
+    return render_template('login.html')
 
 
 @app.route('/login/create', methods=['POST'])
@@ -143,10 +159,10 @@ def sessions_create():
     #         login_user(user)
     #         return redirect(url_for('admins_main_index'))
 
-    return render_template('/login.html')
+    return render_template('login.html')
 
 
-@app.route('/login/delete')
+@app.route('/login/delete', methods=['POST'])
 def sessions_delete():
     logout_user()
 
