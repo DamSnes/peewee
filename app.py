@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, session, g, make_response
-from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user
+from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from models import Expense, User
-from forms import Validation
+from forms import Validation, LoginForm
 import hashlib
 
 
@@ -43,6 +43,8 @@ def index():
 
     for number in enumerate(bring, 1):
 
+        if number == 0:
+            return redirect('/')
         print(number)
 
     if 'visits' in session:
@@ -101,32 +103,10 @@ def post_update(id):
         return "Ошибка при изменении"
 
 
-# @app.route('/login', methods=['POST', 'GET'])
-# def login():
-#     return render_template('login.html')
-
 
 # @app.route('/register', methods=['POST', 'GET'])
 # def register():
 #     return render_template('register.html')
-
-
-# @app.route('/login', methods=['POST', 'GET'])
-# def create_cookie():
-#     log = ""
-#     if request.cookies.get('logged'):
-#         log = request.cookies.get('logged')
-#
-#     res = make_response(f"<h1>Авторизация</h1><p>logged: {log}")
-#     res.set_cookie("logged", "yes")
-#     return res
-#
-#
-# @app.route('/logout', methods=['POST', 'GET'])
-# def delete_cookie():
-#     res = make_response(f"<h1>Вы не авторизованны !</h1>")
-#     res.set_cookie("logged", "", 0)
-#     return res
 
 
 @login_manager.user_loader
@@ -145,30 +125,29 @@ def sessions_new():
     return render_template('login.html')
 
 
-@app.route('/login/create', methods=['POST'])
+@app.route('/login/create', methods=['GET', 'POST'])
 def sessions_create():
-    # if request.form.get('user[login]') and request.form.get('user[password]'):
-    #
-    #     try:
-    #         user = User.get(User.username == request.form.get('user[login]'))
-    #     except User.DoesNotExist:
-    #         return redirect(url_for('sessions_new'))
-    #
-    #     if user.authenticate(request.form['user[password]']):
-    #
-    #         login_user(user)
-    #         return redirect(url_for('admins_main_index'))
 
-    return render_template('login.html')
+    if request.form.get('user[login]') and request.form.get('user[password]'):
+
+        try:
+            user = User.get(User.username == request.form.get('user[login]'))
+        except User.DoesNotExist:
+            return redirect(url_for('sessions_new'))
+
+        if user.authenticate(request.form['user[password]']):
+
+            login_user(user)
+            return redirect('/')
+
+    return redirect('/')
 
 
-@app.route('/login/delete', methods=['POST'])
-def sessions_delete():
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
     logout_user()
-
     return redirect('/')
 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-
