@@ -17,41 +17,17 @@ class BaseModel(Model):
         order_by = 'id'
 
 
-class Expense(BaseModel):
-    name = CharField()
-    created_at = DateTimeField(default=datetime.datetime.now)
-
-    def __repr__(self):
-        return '<Expense %r' % self.name
-
-
 class User(BaseModel, UserMixin):
     id = PrimaryKeyField()
-    login = CharField()
+    name = CharField()
     email = CharField(unique=True)
     password = CharField()
 
-    password = None
 
-    def authenticate(self, password):
-        """Проверка пароля"""
+class Expense(BaseModel):
+    name = CharField()
+    created_at = DateTimeField(default=datetime.datetime.now)
+    user = ForeignKeyField(User, backref='expenses')
 
-        try:
-            encrypt(password)
-            return self.encrypted_password == encrypt(password)
-        except:
-            return False
-
-
-def encrypt(password):
-    """Шифрование пароля"""
-    return hashlib.sha1(password + 'secret_key').hexdigest()
-
-
-@pre_save(sender=User)
-def user_set_encrypted_password(model_class, instance, created):
-    """Если пароль установлен, шифруем его и записываем в encrypted_password"""
-    if len(instance.password or "") == 0:
-        return
-
-    instance.encrypted_password = encrypt(instance.password)
+    def __repr__(self):
+        return '<Expense %r' % self.name

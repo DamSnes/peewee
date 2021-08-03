@@ -83,12 +83,18 @@
                     </div>
                 </div>
             </div>
+
+            <p>{{current_user.name}}</p>
+
             <div class="header-right">
-
-                <h2><a href="/login">Login</a><h2>
+                {% if current_user.is_authenticated %}
                 <h2><a href="/logout">Logout</a><h2>
-
+                <h2><a href="/account_delete">Delete account</a><h2>
+                {% else %}
+                <h2><a href="/login">Login</a><h2>
+                {% endif %}
             </div>
+
         </div>
     </div>
 </div>

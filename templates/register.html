@@ -8,13 +8,15 @@
     <title>Register</title>
 </head>
 <body>
-    <form action="/login" method="post">
+    <form action="/register" method="post">
         <h1>Registration</h1>
-    <p><label>Login:</label> <input type="text" name="login" value="" required/>
+    <p><label>Name:</label> <input type="text" name="name" value="" required/>
     <p><label>Email:</label> <input type="text" name="email" value="" required/>
-    <p><label>Password:</label> <input type="password" name="psw" value="" required/>
+    <p><label>Password:</label> <input type="password" name="password" value="" required/>
     <p><input type="submit" value="Enter" />
     <hr align=left width="300px">
+
+    <a href="/login"> Login </a>
     </form>
 </body>
 </html>

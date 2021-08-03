@@ -8,12 +8,13 @@ class Validation(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField(validators=[InputRequired(), Length(min=4, max=500)])
+    email = StringField(validators=[InputRequired(), Length(min=4, max=500)])
     password = PasswordField(validators=[InputRequired(), Length(min=4, max=100)])
     submit = SubmitField("Login")
 
 
 class RegisterForm(FlaskForm):
-    username = StringField(validators=[InputRequired(), Length(min=4, max=500)])
+    name = StringField(validators=[InputRequired(), Length(min=4, max=500)])
+    email = StringField(validators=[InputRequired(), Length(min=4, max=500)])
     password = PasswordField(validators=[InputRequired(), Length(min=4, max=100)])
     submit = SubmitField("Register")
