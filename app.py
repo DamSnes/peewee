@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect, session, g
 from flask_login import LoginManager, UserMixin, current_user, login_user, logout_user, login_required
 from models import Expense, User
 from forms import Validation, LoginForm
+from werkzeug.security import generate_password_hash, check_password_hash
 import hashlib
 
 #from app import app, db, root, login_manager
@@ -149,20 +150,31 @@ def register():
     if request.method == 'GET':
         return render_template('register.html')
     if request.form.get('name') and request.form.get('email') and request.form.get('password'):
-        User.create(name=request.form.get('name'), email=request.form.get('email'), password=request.form.get('password'))
+        hashing = generate_password_hash(request.form.get('password'))
+        User.create(name=request.form.get('name'), email=request.form.get('email'), password=hashing)
         return redirect('/login')
 
     return redirect('/register')
 
 
-@app.route('/account_delete', methods=['GET', 'POST'])
+@app.route('/account_delete', methods=['GET', 'POST', 'DELETE'])
 def account_delete(id):
 
-    User.delete().where(User.id == id).execute()
-    print("delete account")
+    # User.delete().where(User.id == id).execute()
+    # print("delete account")
 
-    return redirect('/login')
+    # delete_account = User.get(User.id == id)
+    # print(request.form)
+    # delete_account.name = request.form['id'].delete()
+    # delete_account.name = request.form['name'].delete()
+    # delete_account.name = request.form['email'].delete()
+    # delete_account.name = request.form['password'].delete()
+    # delete_account.save()
 
+    try:
+        return redirect('/login')
+    except:
+        return "Ошибка при удалении"
 
 
 if __name__ == '__main__':
