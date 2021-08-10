@@ -2,11 +2,11 @@ import datetime
 from peewee import *
 from playhouse.signals import Model
 from flask_login import UserMixin
-from playhouse.signals import pre_save
-import hashlib
+
 
 #Подключение к БД
 db = PostgresqlDatabase("db", user="postgres", password="DamSnes02", port="5432", host="localhost")
+HEADLINGS = ("Id", "Name", "Date", "Edit")
 
 
 class BaseModel(Model):
@@ -25,7 +25,8 @@ class User(BaseModel, UserMixin):
 
 
 class Expense(BaseModel):
-    name = CharField()
+    headlings = HEADLINGS
+    name = CharField(verbose_name="")
     created_at = DateTimeField(default=datetime.datetime.now)
     user = ForeignKeyField(User, backref='expenses')
 
