@@ -26,7 +26,7 @@ class User(BaseModel, UserMixin):
 
 class Expense(BaseModel):
     headlings = HEADLINGS
-    name = CharField(verbose_name="")
+    name = CharField()
     created_at = DateTimeField(default=datetime.datetime.now)
     user = ForeignKeyField(User, backref='expenses')
 

@@ -5,12 +5,6 @@ from forms import Validation
 from app.flask import app
 
 
-
-headings = ("Id", "Name", "Date", "Edit")
-data = ()
-
-
-
 @app.route('/', methods=['POST'])
 @login_required
 def create():

@@ -70,7 +70,7 @@
                         <thead>
                         <tr>
                             {% for header in headings %}
-                            <th class="table__cell">{{ header }}</th>
+                            <th class="table__cell"><h4>{{ header }}</h4></th>
                             {% endfor %}
                         </tr>
                         </thead>
@@ -78,14 +78,14 @@
                         {% for el in bring %}
                         <tr>
 
-                            <td>{{el.id}}</td>
+                            <td><h5>{{el.id}}</h5></td>
 
-                            <td>{{el.name}}</td>
+                            <td><h5>{{el.name}}</h5></td>
 
-                            <td> {{el.created_at.strftime("%d.%m.%Y %H:%M")}} </td>
+                            <td><h5>{{el.created_at.strftime("%d.%m.%Y %H:%M")}}</h5></td>
 
                             </td>
-                            <td><span><a href="/posts/{{ el.id }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="/delete/{{ el.id }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"><i class="fa fa-close color-danger"></i></a></span>
+                            <td><h5><span><a href="/posts/{{ el.id }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="/delete/{{ el.id }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"><i class="fa fa-close color-danger"></i><h5</a></span>
                             </td>
                         </tr>
                         {% endfor %}

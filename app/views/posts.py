@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect
 from flask_login import login_required
 from app.models.models import Expense
+from forms import Validation
 from app.flask import app
 
 
@@ -37,7 +38,8 @@ def delete(id):
 def update(id):
 
     expense = Expense.get(Expense.id == id)
-    return render_template('posts.html', expense=expense)
+    form = Validation()
+    return render_template('posts.html', expense=expense, form=form)
 
 
 @login_required
@@ -46,6 +48,7 @@ def post_update(id):
 
     expense = Expense.get(Expense.id == id)
     print(request.form)
+
     expense.name = request.form['name']
     expense.save()
 
