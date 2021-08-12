@@ -1,6 +1,56 @@
 
 
 {% extends "layout.html" %}
+
+{% block header %}
+
+<div class="nav-header">
+    <div class="brand-logo">
+        <a href="index.html">
+            <b class="logo-abbr"><img src="/static/images/logo.png" alt=""> </b>
+            <span class="/static/logo-compact"></span>
+            <span class="brand-title">
+                <img src="/static/images/logo-text.png" alt="">
+            </span>
+        </a>
+    </div>
+</div>
+
+<div class="header">
+    <div class="header-content clearfix">
+
+        <div class="header-left">
+            <div class="input-group icons">
+                <div class="input-group-prepend">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <ul class="clearfix">
+                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+
+                </a>
+                </li>
+
+
+                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                <form action="/" method="post">
+                    <button type="submit" class="btn mb-1 btn-primary">Back</button>
+                </form>
+            </a>
+            </li>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
 {% block body %}
 
 <br>

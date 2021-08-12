@@ -6,7 +6,8 @@ from flask_login import UserMixin
 
 #Подключение к БД
 db = PostgresqlDatabase("db", user="postgres", password="DamSnes02", port="5432", host="localhost")
-HEADLINGS = ("Id", "Name", "Date", "Edit")
+HEADINGS = ("Id", "Name", "Date", "Edit")
+HEADINGS_MESSAGES = ("User name", "Message", "Date")
 
 
 class BaseModel(Model):
@@ -25,10 +26,17 @@ class User(BaseModel, UserMixin):
 
 
 class Expense(BaseModel):
-    headlings = HEADLINGS
+    headings = HEADINGS
     name = CharField()
     created_at = DateTimeField(default=datetime.datetime.now)
     user = ForeignKeyField(User, backref='expenses')
+
+
+class Message(BaseModel):
+    headings = HEADINGS_MESSAGES
+    message = CharField()
+    created_at = DateTimeField(default=datetime.datetime.now)
+    user = ForeignKeyField(User, backref='messages')
 
     def __repr__(self):
         return '<Expense %r' % self.name

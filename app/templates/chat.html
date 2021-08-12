@@ -20,7 +20,7 @@
         <div class="header-left">
             <div class="input-group icons">
                 <div class="input-group-prepend">
-                    <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"> Hello {{ current_user.name }}<i></i></span>
+                    <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">Welcome to the chat<i></i></span>
                 </div>
             </div>
         </div>
@@ -33,15 +33,9 @@
                 </li>
 
                 <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                    <form action="/chat" method="post">
-                        <button type="submit" class="btn mb-1 btn-primary">Chat</button>
-                    </form>
-                </a>
-                </li>
                 <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-                <form action="/logout">
-                    <button type="submit" class="btn mb-1 btn-primary">Logout</button>
+                <form action="/" method="post">
+                    <button type="submit" class="btn mb-1 btn-primary">Back</button>
                 </form>
             </a>
             </li>
@@ -59,43 +53,14 @@
 <div class="container-fluid mt-3">
     <div class="row">
         <div class="col-lg-4 col-sm-6">
-            <div class="card gradient-1">
-                <div class="card-body">
-                    <h3 class="card-title text-white">Tasks</h3>
-                    <div class="d-inline-block">
-                        <h2 class="text-white"> {{number}} </h2>
-                    </div>
-                    <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
-                </div>
-            </div>
         </div>
         <div class="col-lg-4 col-sm-6">
-            <div class="card gradient-2">
-                <div class="card-body">
-                    <h3 class="card-title text-white">Visits</h3>
-                    <div class="d-inline-block">
-
-                        <h2 class="text-white"> {{session.visits}} </h2>
-
-                    </div>
-                    <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
-                </div>
-            </div>
         </div>
         <div class="col-lg-4 col-sm-6">
-            <div class="card gradient-3">
-                <div class="card-body">
-                    <h3 class="card-title text-white">New Customers</h3>
-                    <div class="d-inline-block">
-                        <h2 class="text-white"> {{ user_count }} </h2>
-                    </div>
-                    <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
-                </div>
-            </div>
         </div>
     </div>
 
-    <form action="/" method="post">
+    <form action="/chat" method="post">
         {{ form.csrf_token }}
         <div class="row">
 
@@ -116,13 +81,13 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">List</h4>
+                <h4 class="card-title">Messages</h4>
                 <div class="table-responsive">
 
                     <table class="table table-bordered verticle-middle">
                         <thead>
                         <tr>
-                            {% for header in headings %}
+                            {% for header in headings_messages %}
                             <th class="table__cell"><h4>{{ header }}</h4></th>
                             {% endfor %}
                         </tr>
@@ -131,15 +96,12 @@
                         {% for el in bring %}
                         <tr>
 
-                            <td><h5>{{el.id}}</h5></td>
+                            <td><h5>{{el.user.name}}</h5></td>
 
-                            <td><h5>{{el.name}}</h5></td>
+                            <td><h5>{{el.message}}</h5></td>
 
                             <td><h5>{{el.created_at.strftime("%d.%m.%Y %H:%M")}}</h5></td>
 
-                            </td>
-                            <td><h5><span><a href="/posts/{{ el.id }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"><i class="fa fa-pencil color-muted m-r-5"></i> </a><a href="/delete/{{ el.id }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"><i class="fa fa-close color-danger"></i><h5</a></span>
-                            </td>
                         </tr>
                         {% endfor %}
                         </tbody>
@@ -151,3 +113,4 @@
     </div>
 </div>
 {% endblock %}
+

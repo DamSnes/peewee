@@ -1,6 +1,6 @@
 from flask import render_template, redirect, session
 from flask_login import current_user, login_required
-from app.models.models import Expense, User, HEADLINGS
+from app.models.models import Expense, User, HEADINGS
 from forms import Validation
 from app.flask import app
 
@@ -37,4 +37,4 @@ def index():
         session['visits'] = 1
     print(session)
 
-    return render_template('index.html', number=number, user_count=user_count, filter=filter, bring=bring, form=form, headings=HEADLINGS)
+    return render_template('index.html', number=number, user_count=user_count, filter=filter, bring=bring, form=form, headings=HEADINGS)
