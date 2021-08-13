@@ -30,3 +30,19 @@ def chat():
     form = Validation()
 
     return render_template('chat.html', form=form, headings_messages=HEADINGS_MESSAGES, bring=bring)
+
+
+@app.route('/chat/clear', methods=['POST'])
+@login_required
+def clear_chat():
+
+    clear = Message.delete().execute()
+    print("clear")
+    try:
+        return redirect('/')
+    except:
+        return "Ошибка при удалении"
+
+    return render_template('chat.html', clear=clear)
+
+    return redirect('/chat')
