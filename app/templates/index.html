@@ -33,12 +33,17 @@
                 </li>
 
                 <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                <form action="/table" method="post">
+                    <button type="submit" class="btn mb-1 btn-primary">Table</button>
+                </form>
+
+                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                     <form action="/chat" method="post">
                         <button type="submit" class="btn mb-1 btn-primary">Chat</button>
                     </form>
                 </a>
                 </li>
-                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+
                 <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                 <form action="/logout">
                     <button type="submit" class="btn mb-1 btn-primary">Logout</button>
@@ -131,7 +136,7 @@
                         {% for el in bring %}
                         <tr>
 
-                            <td><h5>{{el.id}}</h5></td>
+                            <td><h5><input type="checkbox"></h5></td>
 
                             <td><h5>{{el.name}}</h5></td>
 

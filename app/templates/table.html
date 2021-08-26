@@ -1,0 +1,286 @@
+{% extends "layout.html" %}
+
+{% block header %}
+
+<div class="nav-header">
+    <div class="brand-logo">
+        <a href="index.html">
+            <b class="logo-abbr"><img src="/static/images/logo.png" alt=""> </b>
+            <span class="/static/logo-compact"></span>
+            <span class="brand-title">
+                <img src="/static/images/logo-text.png" alt="">
+            </span>
+        </a>
+    </div>
+</div>
+
+<div class="header">
+    <div class="header-content clearfix">
+
+        <div class="header-left">
+            <div class="input-group icons">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1">Welcome to the table<i></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <ul class="clearfix">
+                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+
+                </a>
+                </li>
+
+
+                <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                <form action="/" method="post">
+                    <button type="submit" class="btn mb-1 btn-primary">Back</button>
+                </form>
+
+            </a>
+            </li>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-4 col-sm-6">
+        </div>
+        <div class="col-lg-4 col-sm-6">
+        </div>
+        <div class="col-lg-4 col-sm-6">
+        </div>
+    </div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title"><a href="/table/monday">Monday</h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered verticle-middle">
+                        <thead>
+                        <tr>
+                            {% for header in headings_table %}
+                            <th class="table__cell"><h4>{{ header }}</h4></th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for el in мonday_bring %}
+                        <tr>
+
+                            <td><h5>{{el.time}}</h5></td>
+
+                            <td><h5>{{el.subject}}</h5></td>
+
+                            <td><h5>{{el.auditorium}}</h5></td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title"><a href="/table/tuesday">Tuesday</h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered verticle-middle">
+                        <thead>
+                        <tr>
+                            {% for header in headings_table %}
+                            <th class="table__cell"><h4>{{ header }}</h4></th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for el in tuesday_bring %}
+                        <tr>
+
+                            <td><h5>{{el.time}}</h5></td>
+
+                            <td><h5>{{el.subject}}</h5></td>
+
+                            <td><h5>{{el.auditorium}}</h5></td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title"><a href="/table/wednesday">Wednesday</h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered verticle-middle">
+                        <thead>
+                        <tr>
+                            {% for header in headings_table %}
+                            <th class="table__cell"><h4>{{ header }}</h4></th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for el in wednesday_bring %}
+                        <tr>
+
+                            <td><h5>{{el.time}}</h5></td>
+
+                            <td><h5>{{el.subject}}</h5></td>
+
+                            <td><h5>{{el.auditorium}}</h5></td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title"><a href="/table/thursday">Thursday</h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered verticle-middle">
+                        <thead>
+                        <tr>
+                            {% for header in headings_table %}
+                            <th class="table__cell"><h4>{{ header }}</h4></th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for el in thursday_bring %}
+                        <tr>
+
+                            <td><h5>{{el.time}}</h5></td>
+
+                            <td><h5>{{el.subject}}</h5></td>
+
+                            <td><h5>{{el.auditorium}}</h5></td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title"><a href="/table/friday">Friday</h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered verticle-middle">
+                        <thead>
+                        <tr>
+                            {% for header in headings_table %}
+                            <th class="table__cell"><h4>{{ header }}</h4></th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for el in friday_bring %}
+                        <tr>
+
+                            <td><h5>{{el.time}}</h5></td>
+
+                            <td><h5>{{el.subject}}</h5></td>
+
+                            <td><h5>{{el.auditorium}}</h5></td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title"><a href="/table/saturday">Saturday</h4>
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered verticle-middle">
+                        <thead>
+                        <tr>
+                            {% for header in headings_table %}
+                            <th class="table__cell"><h4>{{ header }}</h4></th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for el in saturday_bring %}
+                        <tr>
+
+                            <td><h5>{{el.time}}</h5></td>
+
+                            <td><h5>{{el.subject}}</h5></td>
+
+                            <td><h5>{{el.auditorium}}</h5></td>
+
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect
 from flask_login import current_user, login_required
-from app.models.models import Message, User, HEADINGS_MESSAGES
+from app.models.models import Message, HEADINGS_MESSAGES
 from forms import Validation
 from app.flask import app
 
